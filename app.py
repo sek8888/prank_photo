@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import (
+    Flask, render_template,
+    request, jsonify, send_from_directory
+)
 import os
 import base64
 from io import BytesIO
@@ -41,6 +44,11 @@ def upload_image(user_id):
 
     except Exception as e:
         return jsonify({'ok': False, 'description': str(e)}), 500
+
+@app.route('/uploads/<user_id>')
+def get_image(user_id):
+    # Serve the saved image from the uploads folder
+    return send_from_directory(app.config['UPLOAD_FOLDER'], f"{user_id}.png")
 
 
 if __name__ == '__main__':
