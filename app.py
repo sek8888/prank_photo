@@ -36,7 +36,7 @@ def upload_image(user_id):
         img = Image.open(BytesIO(img_data))
         
         # Save the image
-        image_filename = 'captured_image.png'
+        image_filename = f'{user_id}.png'
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
         img.save(image_path)
 
