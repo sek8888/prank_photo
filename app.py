@@ -47,6 +47,7 @@ def upload_image(user_id):
 
 @app.route('/uploads/<user_id>')
 def get_image(user_id):
+    return jsonify({'ok': False, 'user_id': user_id}), 200
     # Serve the saved image from the uploads folder
     return send_from_directory(app.config['UPLOAD_FOLDER'], f"{user_id}.png")
 
